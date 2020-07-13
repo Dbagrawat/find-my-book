@@ -24,5 +24,3 @@ To install this app please follow the below installation steps:
 6. All text is coming from the `properties.js`file.
 
 7. I used React built-in typechecking library `prop-types`.
-
-8.
