@@ -1,0 +1,13 @@
+@import './base.scss';
+
+$theme-colors: (
+  'primary': $darkTeal
+);
+
+.card-title {
+    color: $darkTeal
+}
+
+
+
+@import '~bootstrap/scss/bootstrap.scss';
