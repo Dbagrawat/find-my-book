@@ -118,7 +118,7 @@ const ShowBooks = () => {
                 ) : (
                     <Spinner loading={properties.loading} />
                 )}
-                {/* {data && loaded && data.count <= 0 && <NoBooksFound />} */}
+                
             </div>
         </div>
     );
