@@ -21,11 +21,11 @@ const ShowBooks = () => {
     const [currentPage, setCurrentPage] = useState(initialPageNumber);
     const [searchTerms, setSearchTerm] = useState("");
     const [search, setSearch] = useState(false);
-    const [error, setError] = useState(false);
+    const [errorMessage, setError] = useState(false);
     const [datalen, setDatalen] = useState();
 
     useEffect(() => {
-        history.push(`${path}?page=${currentPage}`);
+        history.push(`${path}?page=${currentPage}&search=${searchTerms}`);
     }, []);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const ShowBooks = () => {
                     setDatalen(false);
                     setLoaded(10);
                 }
-
+                setSearch(false);
                 return setData(respData);
             })
             .catch((error) => {
@@ -58,9 +58,9 @@ const ShowBooks = () => {
 
     useEffect(() => {
         if (currentPage > 0) {
-            history.push(`${path}?page=${currentPage}`);
+            history.push(`${path}?page=${currentPage}&search=${searchTerms}`);
         }
-    }, [currentPage, history, path]);
+    }, [currentPage, history, path, datalen]);
 
     const handleSearchInputChange = (event) => {
         setSearchTerm(event.target.value);
@@ -113,12 +113,11 @@ const ShowBooks = () => {
             <div className="mt-4 row">
                 {data.count > 0 && loaded ? (
                     <BookCard data={data} />
-                ) : data.count <= 0 ? (
+                ) : data.books <= 0 ? (
                     <NoBooksFound noBooks={properties.noBooks} />
                 ) : (
-                    <Spinner loading={properties.loading} />
+                    <Spinner label={properties.loading} />
                 )}
-                
             </div>
         </div>
     );
